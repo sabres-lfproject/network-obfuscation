@@ -1,0 +1,11 @@
+Obfuscate - single click test result
+
+gsankara@DESKTOP-Q9R0SOR:/mnt/c/Users/Ganesh C S/Documents/usc/click$ cat fuss.click
+InfiniteSource(0800,40,40) -> Print(Beg,32) -> Obfuscat() -> Print(Mid,32) -> Obfuscat() -> Print(End,32) -> Discard()
+gsankara@DESKTOP-Q9R0SOR:/mnt/c/Users/Ganesh C S/Documents/usc/click$ sudo click --dpdk -c 0xf -n 4 -- -u /click fuss.click
+
+Beg:    4 | 30383030
+data 808466480 rnd -413878763 d1 -681275867
+Mid:    4 | 258e64d7
+data -681275867 rnd -413878763 d1 808466480
+End:    4 | 30383030

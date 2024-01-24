@@ -1,0 +1,330 @@
+sudo bash ./observer.sh 0
+sudo bash ./observer.sh 1
+sudo bash ./observer.sh 2
+sudo bash ./observer.sh 3
+sudo bash ./observer.sh 4
+sudo bash ./observer.sh 5
+sudo bash ./observer.sh 6
+sudo bash ./observer.sh 7
+sudo bash ./observer.sh 8
+sudo bash ./observer.sh 9
+sudo bash ./observer.sh 10
+sudo bash ./observer.sh 11
+sudo bash ./observer.sh 12
+sudo bash ./observer.sh 13
+sudo bash ./observer.sh 14
+sudo bash ./observer.sh 15
+sudo bash ./observer.sh 16
+sudo bash ./observer.sh 17
+sudo bash ./observer.sh 18
+sudo bash ./observer.sh 19
+sudo bash ./observer.sh 20
+sudo bash ./observer.sh 21
+sudo bash ./observer.sh 22
+sudo bash ./observer.sh 23
+sudo bash ./observer.sh 24
+sudo bash ./observer.sh 25
+sudo bash ./observer.sh 26
+sudo bash ./observer.sh 27
+sudo bash ./observer.sh 28
+sudo bash ./observer.sh 29
+sudo bash ./observer.sh 30
+sudo bash ./observer.sh 31
+sudo bash ./observer.sh 32
+sudo bash ./observer.sh 33
+sudo bash ./observer.sh 34
+sudo bash ./observer.sh 35
+sudo bash ./observer.sh 36
+sudo bash ./observer.sh 37
+sudo bash ./observer.sh 38
+sudo bash ./observer.sh 39
+sudo bash ./observer.sh 40
+sudo bash ./observer.sh 41
+sudo bash ./observer.sh 42
+sudo bash ./observer.sh 43
+sudo bash ./observer.sh 44
+sudo bash ./observer.sh 45
+sudo bash ./observer.sh 46
+sudo bash ./observer.sh 47
+sudo bash ./observer.sh 48
+sudo bash ./observer.sh 49
+sudo bash ./observer.sh 50
+sudo bash ./observer.sh 51
+sudo bash ./observer.sh 52
+sudo bash ./observer.sh 53
+sudo bash ./observer.sh 54
+sudo bash ./observer.sh 55
+sudo bash ./observer.sh 56
+sudo bash ./observer.sh 57
+sudo bash ./observer.sh 58
+sudo bash ./observer.sh 59
+sudo bash ./observer.sh 60
+sudo bash ./observer.sh 61
+sudo bash ./observer.sh 62
+sudo bash ./observer.sh 63
+sudo bash ./observer.sh 64
+sudo bash ./observer.sh 65
+sudo bash ./observer.sh 66
+sudo bash ./observer.sh 67
+sudo bash ./observer.sh 68
+sudo bash ./observer.sh 69
+sudo bash ./observer.sh 70
+sudo bash ./observer.sh 71
+sudo bash ./observer.sh 72
+sudo bash ./observer.sh 73
+sudo bash ./observer.sh 74
+sudo bash ./observer.sh 75
+sudo bash ./observer.sh 76
+sudo bash ./observer.sh 77
+sudo bash ./observer.sh 78
+sudo bash ./observer.sh 79
+sudo bash ./observer.sh 80
+sudo bash ./observer.sh 81
+sudo bash ./observer.sh 82
+sudo bash ./observer.sh 83
+sudo bash ./observer.sh 84
+sudo bash ./observer.sh 85
+sudo bash ./observer.sh 86
+sudo bash ./observer.sh 87
+sudo bash ./observer.sh 88
+sudo bash ./observer.sh 89
+sudo bash ./observer.sh 90
+sudo bash ./observer.sh 91
+sudo bash ./observer.sh 92
+sudo bash ./observer.sh 93
+sudo bash ./observer.sh 94
+sudo bash ./observer.sh 95
+sudo bash ./observer.sh 96
+sudo bash ./observer.sh 97
+sudo bash ./observer.sh 98
+sudo bash ./observer.sh 99
+sudo bash ./observer.sh 100
+sudo bash ./observer.sh 101
+sudo bash ./observer.sh 102
+sudo bash ./observer.sh 103
+sudo bash ./observer.sh 104
+sudo bash ./observer.sh 105
+sudo bash ./observer.sh 106
+sudo bash ./observer.sh 107
+sudo bash ./observer.sh 108
+sudo bash ./observer.sh 109
+sudo bash ./server.sh 0 0.5 600
+sudo bash ./server.sh 1 0.5 600
+sudo bash ./server.sh 2 0.5 600
+sudo bash ./server.sh 3 0.5 600
+sudo bash ./server.sh 4 0.5 600
+sudo bash ./server.sh 5 0.5 600
+sudo bash ./server.sh 6 0.5 600
+sudo bash ./server.sh 7 0.5 600
+sudo bash ./server.sh 8 0.5 600
+sudo bash ./server.sh 9 0.5 600
+sudo bash ./server.sh 10 0.5 600
+sudo bash ./server.sh 11 0.5 600
+sudo bash ./server.sh 12 0.5 600
+sudo bash ./server.sh 13 0.5 600
+sudo bash ./server.sh 14 0.5 600
+sudo bash ./server.sh 15 0.5 600
+sudo bash ./server.sh 16 0.5 600
+sudo bash ./server.sh 17 0.5 600
+sudo bash ./server.sh 18 0.5 600
+sudo bash ./server.sh 19 0.5 600
+sudo bash ./server.sh 20 0.5 600
+sudo bash ./server.sh 21 0.5 600
+sudo bash ./server.sh 22 0.5 600
+sudo bash ./server.sh 23 0.5 600
+sudo bash ./server.sh 24 0.5 600
+sudo bash ./server.sh 25 0.5 600
+sudo bash ./server.sh 26 0.5 600
+sudo bash ./server.sh 27 0.5 600
+sudo bash ./server.sh 28 0.5 600
+sudo bash ./server.sh 29 0.5 600
+sudo bash ./server.sh 30 0.5 600
+sudo bash ./server.sh 31 0.5 600
+sudo bash ./server.sh 32 0.5 600
+sudo bash ./server.sh 33 0.5 600
+sudo bash ./server.sh 34 0.5 600
+sudo bash ./server.sh 35 0.5 600
+sudo bash ./server.sh 36 0.5 600
+sudo bash ./server.sh 37 0.5 600
+sudo bash ./server.sh 38 0.5 600
+sudo bash ./server.sh 39 0.5 600
+sudo bash ./server.sh 40 0.5 600
+sudo bash ./server.sh 41 0.5 600
+sudo bash ./server.sh 42 0.5 600
+sudo bash ./server.sh 43 0.5 600
+sudo bash ./server.sh 44 0.5 600
+sudo bash ./server.sh 45 0.5 600
+sudo bash ./server.sh 46 0.5 600
+sudo bash ./server.sh 47 0.5 600
+sudo bash ./server.sh 48 0.5 600
+sudo bash ./server.sh 49 0.5 600
+sudo bash ./server.sh 50 0.5 600
+sudo bash ./server.sh 51 0.5 600
+sudo bash ./server.sh 52 0.5 600
+sudo bash ./server.sh 53 0.5 600
+sudo bash ./server.sh 54 0.5 600
+sudo bash ./server.sh 55 0.5 600
+sudo bash ./server.sh 56 0.5 600
+sudo bash ./server.sh 57 0.5 600
+sudo bash ./server.sh 58 0.5 600
+sudo bash ./server.sh 59 0.5 600
+sudo bash ./server.sh 60 0.5 600
+sudo bash ./server.sh 61 0.5 600
+sudo bash ./server.sh 62 0.5 600
+sudo bash ./server.sh 63 0.5 600
+sudo bash ./server.sh 64 0.5 600
+sudo bash ./server.sh 65 0.5 600
+sudo bash ./server.sh 66 0.5 600
+sudo bash ./server.sh 67 0.5 600
+sudo bash ./server.sh 68 0.5 600
+sudo bash ./server.sh 69 0.5 600
+sudo bash ./server.sh 70 0.5 600
+sudo bash ./server.sh 71 0.5 600
+sudo bash ./server.sh 72 0.5 600
+sudo bash ./server.sh 73 0.5 600
+sudo bash ./server.sh 74 0.5 600
+sudo bash ./server.sh 75 0.5 600
+sudo bash ./server.sh 76 0.5 600
+sudo bash ./server.sh 77 0.5 600
+sudo bash ./server.sh 78 0.5 600
+sudo bash ./server.sh 79 0.5 600
+sudo bash ./server.sh 80 0.5 600
+sudo bash ./server.sh 81 0.5 600
+sudo bash ./server.sh 82 0.5 600
+sudo bash ./server.sh 83 0.5 600
+sudo bash ./server.sh 84 0.5 600
+sudo bash ./server.sh 85 0.5 600
+sudo bash ./server.sh 86 0.5 600
+sudo bash ./server.sh 87 0.5 600
+sudo bash ./server.sh 88 0.5 600
+sudo bash ./server.sh 89 0.5 600
+sudo bash ./server.sh 90 0.5 600
+sudo bash ./server.sh 91 0.5 600
+sudo bash ./server.sh 92 0.5 600
+sudo bash ./server.sh 93 0.5 600
+sudo bash ./server.sh 94 0.5 600
+sudo bash ./server.sh 95 0.5 600
+sudo bash ./server.sh 96 0.5 600
+sudo bash ./server.sh 97 0.5 600
+sudo bash ./server.sh 98 0.5 600
+sudo bash ./server.sh 99 0.5 600
+sudo bash ./server.sh 100 0.5 600
+sudo bash ./server.sh 101 0.5 600
+sudo bash ./server.sh 102 0.5 600
+sudo bash ./server.sh 103 0.5 600
+sudo bash ./server.sh 104 0.5 600
+sudo bash ./server.sh 105 0.5 600
+sudo bash ./server.sh 106 0.5 600
+sudo bash ./server.sh 107 0.5 600
+sudo bash ./server.sh 108 0.5 600
+sudo bash ./server.sh 109 0.5 600
+sudo bash ./client.sh 0 0.5 600
+sudo bash ./client.sh 1 0.5 600
+sudo bash ./client.sh 2 0.5 600
+sudo bash ./client.sh 3 0.5 600
+sudo bash ./client.sh 4 0.5 600
+sudo bash ./client.sh 5 0.5 600
+sudo bash ./client.sh 6 0.5 600
+sudo bash ./client.sh 7 0.5 600
+sudo bash ./client.sh 8 0.5 600
+sudo bash ./client.sh 9 0.5 600
+sudo bash ./client.sh 10 0.5 600
+sudo bash ./client.sh 11 0.5 600
+sudo bash ./client.sh 12 0.5 600
+sudo bash ./client.sh 13 0.5 600
+sudo bash ./client.sh 14 0.5 600
+sudo bash ./client.sh 15 0.5 600
+sudo bash ./client.sh 16 0.5 600
+sudo bash ./client.sh 17 0.5 600
+sudo bash ./client.sh 18 0.5 600
+sudo bash ./client.sh 19 0.5 600
+sudo bash ./client.sh 20 0.5 600
+sudo bash ./client.sh 21 0.5 600
+sudo bash ./client.sh 22 0.5 600
+sudo bash ./client.sh 23 0.5 600
+sudo bash ./client.sh 24 0.5 600
+sudo bash ./client.sh 25 0.5 600
+sudo bash ./client.sh 26 0.5 600
+sudo bash ./client.sh 27 0.5 600
+sudo bash ./client.sh 28 0.5 600
+sudo bash ./client.sh 29 0.5 600
+sudo bash ./client.sh 30 0.5 600
+sudo bash ./client.sh 31 0.5 600
+sudo bash ./client.sh 32 0.5 600
+sudo bash ./client.sh 33 0.5 600
+sudo bash ./client.sh 34 0.5 600
+sudo bash ./client.sh 35 0.5 600
+sudo bash ./client.sh 36 0.5 600
+sudo bash ./client.sh 37 0.5 600
+sudo bash ./client.sh 38 0.5 600
+sudo bash ./client.sh 39 0.5 600
+sudo bash ./client.sh 40 0.5 600
+sudo bash ./client.sh 41 0.5 600
+sudo bash ./client.sh 42 0.5 600
+sudo bash ./client.sh 43 0.5 600
+sudo bash ./client.sh 44 0.5 600
+sudo bash ./client.sh 45 0.5 600
+sudo bash ./client.sh 46 0.5 600
+sudo bash ./client.sh 47 0.5 600
+sudo bash ./client.sh 48 0.5 600
+sudo bash ./client.sh 49 0.5 600
+sudo bash ./client.sh 50 0.5 600
+sudo bash ./client.sh 51 0.5 600
+sudo bash ./client.sh 52 0.5 600
+sudo bash ./client.sh 53 0.5 600
+sudo bash ./client.sh 54 0.5 600
+sudo bash ./client.sh 55 0.5 600
+sudo bash ./client.sh 56 0.5 600
+sudo bash ./client.sh 57 0.5 600
+sudo bash ./client.sh 58 0.5 600
+sudo bash ./client.sh 59 0.5 600
+sudo bash ./client.sh 60 0.5 600
+sudo bash ./client.sh 61 0.5 600
+sudo bash ./client.sh 62 0.5 600
+sudo bash ./client.sh 63 0.5 600
+sudo bash ./client.sh 64 0.5 600
+sudo bash ./client.sh 65 0.5 600
+sudo bash ./client.sh 66 0.5 600
+sudo bash ./client.sh 67 0.5 600
+sudo bash ./client.sh 68 0.5 600
+sudo bash ./client.sh 69 0.5 600
+sudo bash ./client.sh 70 0.5 600
+sudo bash ./client.sh 71 0.5 600
+sudo bash ./client.sh 72 0.5 600
+sudo bash ./client.sh 73 0.5 600
+sudo bash ./client.sh 74 0.5 600
+sudo bash ./client.sh 75 0.5 600
+sudo bash ./client.sh 76 0.5 600
+sudo bash ./client.sh 77 0.5 600
+sudo bash ./client.sh 78 0.5 600
+sudo bash ./client.sh 79 0.5 600
+sudo bash ./client.sh 80 0.5 600
+sudo bash ./client.sh 81 0.5 600
+sudo bash ./client.sh 82 0.5 600
+sudo bash ./client.sh 83 0.5 600
+sudo bash ./client.sh 84 0.5 600
+sudo bash ./client.sh 85 0.5 600
+sudo bash ./client.sh 86 0.5 600
+sudo bash ./client.sh 87 0.5 600
+sudo bash ./client.sh 88 0.5 600
+sudo bash ./client.sh 89 0.5 600
+sudo bash ./client.sh 90 0.5 600
+sudo bash ./client.sh 91 0.5 600
+sudo bash ./client.sh 92 0.5 600
+sudo bash ./client.sh 93 0.5 600
+sudo bash ./client.sh 94 0.5 600
+sudo bash ./client.sh 95 0.5 600
+sudo bash ./client.sh 96 0.5 600
+sudo bash ./client.sh 97 0.5 600
+sudo bash ./client.sh 98 0.5 600
+sudo bash ./client.sh 99 0.5 600
+sudo bash ./client.sh 100 0.5 600
+sudo bash ./client.sh 101 0.5 600
+sudo bash ./client.sh 102 0.5 600
+sudo bash ./client.sh 103 0.5 600
+sudo bash ./client.sh 104 0.5 600
+sudo bash ./client.sh 105 0.5 600
+sudo bash ./client.sh 106 0.5 600
+sudo bash ./client.sh 107 0.5 600
+sudo bash ./client.sh 108 0.5 600
+sudo bash ./client.sh 109 0.5 600

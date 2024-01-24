@@ -1,0 +1,7 @@
+gsankara@DESKTOP-Q9R0SOR:/mnt/c/Users/Ganesh C S/Documents/usc/click$ cat pad.click
+InfiniteSource(0x4500,40,40) -> IPEncap(4, 18.26.4.24, 140.247.60.147) -> Print(Beg,32) -> Padding(LENGTH 100) -> Print(End,32) -> Discard()
+gsankara@DESKTOP-Q9R0SOR:/mnt/c/Users/Ganesh C S/Documents/usc/click$ sudo click --dpdk -c 0xf -n 4 -- -u /click pad.click
+
+Beg:   26 | 4500001a 00250000 fa04e0fe 121a0418 8cf73c93 30783435 3030
+Padding nb 100 fill 56 hd 18 len 26
+End:   82 | 45000052 00250000 fa04e0c6 121a0418 8cf73c93 30783435 30300086 4f6ca978

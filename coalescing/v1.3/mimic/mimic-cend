@@ -1,0 +1,23 @@
+#!/usr/bin/env python3                                                                                                                           
+import sys, re, os, time
+HOST="t"
+CMD="echo done | nc {} 3334".format(HOST)
+print (CMD)
+reg=re.compile("^Successfully completed (\d+)/(\d+) avg")
+count=0
+result=1
+for line in sys.stdin:
+    line.rstrip()
+    count = count +1
+    if not line.startswith("Successfully completed"):
+        continue
+    m=reg.match(line)
+    print ("outp", count, m.group(1), m.group(2))
+    if m.group(1) == m.group(2):
+        while result != 0:
+            result =os.system(CMD)
+            print (result)
+            time.sleep(1)
+        exit(0)
+
+print("Exit")

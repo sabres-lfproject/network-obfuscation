@@ -1,0 +1,1 @@
+mimic-replay -c 192.168.2.2 -i server.ips -n5 -e $1/$2 | /click/mimic/mimic-end.py $3 $4

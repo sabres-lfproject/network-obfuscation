@@ -1,0 +1,12 @@
+{
+  "program": "pad8.p4",
+  "language": "p4-16",
+  "targets": {
+    "mininet": {
+      "bmv2_log": true,
+      "pcap_dump": true,
+      "num-hosts": 2,
+      "switch-config": "simple_router.config"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+mimic-replay -s -i client.ips -e $1/$2 | /click/mimic/mimic-end.py $3 $4

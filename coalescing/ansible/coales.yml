@@ -1,0 +1,84 @@
+---
+- name: "Install Switch Packages"
+  hosts: switches, clicks
+  tasks:
+          - name: "Packages"
+            apt:
+                  name:
+                          - libelf-dev
+                          - build-essential
+                          - gcc
+                          - g++
+                          - pkg-config
+                          - zlib1g-dev
+                          - libnuma-dev
+                          - dpdk-dev
+                          - dpdk
+                          - git
+                          - libfile-which-perl
+                          - lshw
+                  state: present
+                  update_cache: true
+            become: true
+
+          - name: "Clean Click"
+            file:
+                   state: absent
+                   path: /home/rvn/fastclick
+
+          - name: "Get Click"
+            git:
+                   repo: https://github.com/tbarbette/fastclick.git
+                   dest: /home/rvn/fastclick
+                   clone: yes
+                   accept_hostkey: yes
+            ignore_errors: yes
+
+          - name: "Push Sabres elements"
+            copy:
+                    src: /home/gsankara/gitlab/
+                    dest: /home/rvn/fastclick/elements/ip/
+                    owner: rvn
+                    group: rvn
+                    mode: u=rw,g=,o=
+
+          - name: "Configure Click"
+            command: chdir=/home/rvn/fastclick ./configure --enable-dpdk --enable-dpdk-pool --enable-bound-port-transfer --enable-local --disable-bpf --enable-intel-cpu --disable-batch --enable-select=poll CFLAGS="-O3" CXXFLAGS="-std=c++11 -O3"  
+
+          - name: "Make Click"
+            make:
+                    chdir: /home/rvn/fastclick
+                    params:
+                            NUM_THREADS: 4
+
+          - name: "Install Click"
+            make:
+                    chdir: /home/rvn/fastclick
+                    target: install
+            become: yes
+
+          - name: "Copy Interface configuration script"
+            copy:
+                    src: /home/gsankara/coalescing/click-secret/ansible/simple-dcomp-min.sh
+                    dest: /home/rvn
+                    owner: rvn
+                    group: rvn
+                    mode: u=rwx,g=,o=
+
+          - name: "Configure Interfaces"
+            command: chdir=/home/rvn ./simple-dcomp-min.sh  
+            become: true
+
+
+- name: "Install Host Packages"
+  hosts: hosts
+  tasks:
+          - name: "Packages"
+            apt:
+                  name:
+                          - iperf3
+                  state: present
+                  update_cache: true
+            become: true
+
+

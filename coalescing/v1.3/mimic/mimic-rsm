@@ -1,0 +1,2 @@
+echo printiing $1
+mimic-replay -s -i client.ips -e $1 2>&1 > ~/bg.log
