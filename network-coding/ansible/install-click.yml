@@ -1,0 +1,74 @@
+- hosts: clicks
+  tasks:
+    - name: install packages
+      apt:
+        pkg:
+          - build-essential
+          - libelf-dev
+          - pkg-config
+          - zlib1g-dev
+          - libnuma-dev
+          - dpdk-dev
+        update_cache: yes
+      become: yes
+
+    - name: ensure no fastclick repo
+      shell:
+        cmd: rm -rf fastclick
+        chdir: /home/rvn
+
+    - name: git clone
+      git:
+        repo: https://github.com/isi-lincoln/fastclick
+        dest: fastclick
+        recursive: yes
+        update: yes
+        version: main
+
+    - name: now grab our branch
+      shell:
+        cmd: git checkout lt-dev
+        chdir: /home/rvn/fastclick/
+
+    - name: grab submodules
+      shell:
+        cmd: git submodule update --init --recursive
+        chdir: /home/rvn/fastclick/
+
+    - name: configure fastclick code
+      shell:
+        cmd: ./configure --enable-dpdk --enable-intel-cpu --verbose --enable-select=poll CFLAGS="-O3" CXXFLAGS="-std=c++11 -O3"  --disable-dynamic-linking --enable-poll --enable-bound-port-transfer --enable-local --enable-batch --enable-flow --disable-task-stats --disable-cpu-load --enable-user-multithread --enable-multithread
+        chdir: /home/rvn/fastclick
+
+    - name: make cryptopp library
+      shell:
+        cmd: make -j `nproc` static
+        chdir: /home/rvn/fastclick/include/cryptopp
+
+    - name: make gferasure library
+      shell:
+        cmd: make -j `nproc`
+        chdir: {{ item }}
+      loop:
+        - /home/rvn/fastclick/include/gferasure/src
+        - /home/rvn/fastclick/elements/local/gferasure/src
+
+    - name: modify Makefile to add crypto++ and gferasure
+      shell:
+        cmd: sed -i 's/LIBS = -lnuma -lelf  `$(CLICK_BUILDTOOL) --otherlibs` $(ELEMENT_LIBS)/LIBS = -lnuma -lelf -lcryptopp -L$(top_builddir)/include/cryptopp -lgferasure -L$(top_builddir)/include/gferasure/src/ -I$(top_builddir)/include/gferasure/src/ -Wl,-rpath=$(top_builddir)/include/gferasure/src/ `$(CLICK_BUILDTOOL) --otherlibs` $(ELEMENT_LIBS)/g' userlevel/Makefile
+        chdir: /home/rvn/fastclick
+
+    - name: build our elements
+      shell:
+        cmd: make elemlist && make clean && make -j `nproc`
+        chdir: /home/rvn/fastclick
+
+- hosts: ends
+  tasks:
+    - name: install packages
+      apt:
+        pkg:
+          - iperf3
+          - nginx
+        update_cache: yes
+      become: yes

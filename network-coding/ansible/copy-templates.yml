@@ -1,0 +1,9 @@
+- hosts: [clicks]
+  tasks:
+    - name: copy the click templates
+      copy:
+        src: ../click-templates/{{ inventory_hostname }}-{{ item }}.click
+        dest: /home/rvn/{{ inventory_hostname}}-{{ item }}.click
+      loop:
+        - xor
+        - sss

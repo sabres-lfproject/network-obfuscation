@@ -1,0 +1,29 @@
+- hosts: all
+  tasks:
+    - name: install packages
+      apt:
+        pkg:
+          - lldpd
+          - jq
+        update_cache: yes
+      become: yes
+
+    - name: wait while lldpd talks to neighbors
+      puase:
+        seconds: 10
+
+    - name: get interfaces
+      shell: ip -br addr | grep eth | grep -v eth0 | cut -d ' ' -f 1
+      register: num_eths
+
+    - debug: var=num_eths
+
+    - set_fact:
+        ifaces: "{{ num_eths.stdout_lines }}"
+
+    - name: configure fastclick code
+      shell:
+        cmd: lldpctl  -f json | jq .lldp.interface[].{{ item }}.port.id.value | tail -n 1 | sed -se 's/"//g' > {{ item }}-neigh.txt
+        chdir: /home/rvn/fastclick
+      with_items:
+        - {{ ifaces }}

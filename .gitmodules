@@ -1,0 +1,3 @@
+[submodule "network-coding/src"]
+	path = network-coding/src
+	url = https://github.com/isi-lincoln/fastclick.git

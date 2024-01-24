@@ -1,0 +1,15 @@
+- hosts: ["a", "b"]
+  become: yes
+  tasks:
+    - name: kill click if it is running
+      shell:
+        cmd: killall click
+      ignore_errors: yes
+
+    - name: copy over new config file from mount
+      shell:
+        cmd: cp /click/click-templates/{{inventory_hostname}}.click /home/rvn/fastclick/
+
+    - name: start new click version
+      shell:
+        cmd: nohup /home/rvn/fastclick/bin/click /home/rvn/fastclick/{{inventory_hostname}}.click &

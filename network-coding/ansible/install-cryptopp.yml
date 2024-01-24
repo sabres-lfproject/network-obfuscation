@@ -1,0 +1,31 @@
+- hosts: all
+  tasks:
+    - name: install packages
+      apt: 
+        pkg:
+          - build-essential
+        update_cache: yes
+      become: yes
+
+    - name: git clone
+      git:
+        repo: https://github.com/weidai11/cryptopp.git
+        dest: cryptopp
+        recursive: yes
+        update: yes
+        version: CRYPTOPP_8_6_0
+
+    - name: clean cryptopp code
+      shell:
+        cmd: make clean
+        chdir: /home/rvn/cryptopp
+      ignore_errors: yes
+
+    - name: build cryptopp code
+      shell:
+        cmd: make static
+        chdir: /home/rvn/cryptopp
+
+    - name: copy over library
+      shell:
+        cmd: ln -s /home/rvn/cryptopp/libcryptopp.a /home/rvn/fastclick/libcryptopp.a 

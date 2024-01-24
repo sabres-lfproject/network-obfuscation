@@ -1,0 +1,45 @@
+- hosts: [all]
+  tasks:
+    - name: addresses
+      shell: ip -br addr | grep eth | grep -v eth0 | cut -d ' ' -f 1
+      register: num_eths
+
+    - debug: var=num_eths
+
+    - set_fact:
+        ifaces: "{{ num_eths.stdout_lines }}"
+
+    - name: flush interface before
+      command: ip addr flush {{ item.name }}
+      with_items:
+        - "{{ vars['config'][inventory_hostname].interfaces }}"
+      ignore_errors: yes
+      become: yes
+      when: inventory_hostname in vars['config']
+
+    - name: addr interface
+      command: ip addr add {{ item.ip }}/24 dev {{ item.name }}
+      with_items:
+        - "{{ vars['config'][inventory_hostname].interfaces }}"
+      become: yes
+      when: inventory_hostname in vars['config']
+
+    - name: up interface
+      command: ip link set dev {{ item.name }} up
+      with_items:
+        - "{{ vars['config'][inventory_hostname].interfaces }}"
+      become: yes
+      when: inventory_hostname in vars['config']
+
+    - name: set mtu to 3000 for parent interface
+      command: ip link set mtu 3000 {{ item.name }}
+      with_items:
+        - "{{ vars['config'][inventory_hostname].interfaces }}"
+      become: yes
+      when: inventory_hostname in vars['config']
+
+- hosts: [ends, clicks]
+  tasks:
+    - name: set mtu to 1500 for eth1
+      command: ip link set mtu 1500 eth1
+      become: yes

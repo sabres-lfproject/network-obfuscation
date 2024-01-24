@@ -1,0 +1,68 @@
+config:
+  x:
+    interfaces:
+    - ip: 192.168.0.1
+      name: eth1
+    routes:
+    - addr: 192.168.2.0/24
+      dev: eth1
+  a:
+    interfaces:
+    - ip: 192.168.0.100
+      name: eth1
+    - ip: 10.0.0.1
+      name: eth2
+    - ip: 10.0.1.1
+      name: eth3
+    - ip: 10.0.2.1
+      name: eth4
+  t:
+    interfaces:
+    - ip: 10.0.0.2
+      name: eth1
+    - ip: 10.1.0.2
+      name: eth2
+    routes:
+    - addr: 192.168.0.0/24
+      dev: eth1
+    - addr: 192.168.2.0/24
+      dev: eth2
+  u:
+    interfaces:
+    - ip: 10.0.1.2
+      name: eth1
+    - ip: 10.1.1.2
+      name: eth2
+    routes:
+    - addr: 192.168.0.0/24
+      dev: eth1
+    - addr: 192.168.2.0/24
+      dev: eth2
+  v:
+    interfaces:
+    - ip: 10.0.2.2
+      name: eth1
+    - ip: 10.1.2.2
+      name: eth2
+    routes:
+    - addr: 192.168.0.0/24
+      dev: eth1
+    - addr: 192.168.2.0/24
+      dev: eth2
+  b:
+    interfaces:
+    - ip: 192.168.2.101
+      name: eth1
+    - ip: 10.1.0.1
+      name: eth2
+    - ip: 10.1.1.1
+      name: eth3
+    - ip: 10.1.2.1
+      name: eth4
+  y:
+    interfaces:
+    - ip: 192.168.2.2
+      name: eth1
+    routes:
+    - addr: 192.168.0.0/24
+      dev: eth1

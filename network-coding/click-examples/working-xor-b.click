@@ -1,0 +1,82 @@
+// address info for each of the interfaces
+classifier0     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        12/0800,
+        -,
+        );
+
+classifier1     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        12/0800,
+        -,
+        );
+
+classifier2     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        12/0800,
+        -,
+        );
+
+classifier3     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        12/0800,
+        -,
+        );
+
+
+ipclassifier    :: IPClassifier(
+        dst host 192.168.0.1
+        );
+
+data_in                         ::      FromDPDKDevice( 0000:02:02.0, MTU 2500, JUMBO true, N_QUEUES 1, MAXTHREADS 1, MODE none);
+left_in_device                  ::      FromDPDKDevice( 0000:02:03.0, MTU 2500, JUMBO true, N_QUEUES 1, MAXTHREADS 1, MODE none);
+center_in_device                ::      FromDPDKDevice( 0000:02:04.0, MTU 2500, JUMBO true, N_QUEUES 1, MAXTHREADS 1, MODE none);
+right_in_device                 ::      FromDPDKDevice( 0000:02:05.0, MTU 2500, JUMBO true, N_QUEUES 1, MAXTHREADS 1, MODE none);
+
+data_out                        ::      ToDPDKDevice( 0000:02:02.0, N_QUEUES 1);
+left_out_device                 ::      ToDPDKDevice( 0000:02:03.0, N_QUEUES 1);
+center_out_device               ::      ToDPDKDevice( 0000:02:04.0, N_QUEUES 1);
+right_out_device                ::      ToDPDKDevice( 0000:02:05.0, N_QUEUES 1);
+
+chip    :: MarkIPHeader(14);
+chip1   :: MarkIPHeader(14);
+
+encode :: XORMsg(3,0,2,1500);
+decode :: XORMsg(3,1,2,1500);
+
+
+/* handle the arp requests */
+
+data_in         ->      classifier0[0]  ->      Print("a")      ->      ARPResponder(192.168.0.1 192.168.0.0/24 04:70:00:00:00:02)        ->      data_out;
+left_in_device  ->      classifier1[0]  ->      Print("b")      ->      ARPResponder(192.168.2.2 192.168.2.0/24 04:70:00:00:00:11)        ->     left_out_device;
+center_in_device ->     classifier2[0]  ->      Print("c")      ->      ARPResponder(192.168.2.2 192.168.2.0/24 04:70:00:00:00:21)        ->     center_out_device;
+right_in_device ->      classifier3[0]  ->      Print("d")      ->      ARPResponder(192.168.2.2 192.168.2.0/24 04:70:00:00:00:31)        ->     right_out_device;
+
+// no-ops
+
+// if this is an ip packet
+// and it is dest host y -> rewrite the eth header now
+// then send it to XOR
+classifier0[1]  ->       chip    ->      ipclassifier[0] ->      encode;
+
+// then these will be the encoded chunks
+encode[0]      ->       EtherRewrite(04:70:00:00:00:11, 04:70:00:00:03:11)      ->      left_out_device;
+encode[1]      ->       EtherRewrite(04:70:00:00:00:21, 04:70:00:00:03:21)      ->      center_out_device;
+encode[2]      ->       EtherRewrite(04:70:00:00:00:31, 04:70:00:00:03:31)      ->      right_out_device;
+
+
+
+// if the packet is coming over one of or other links, it means its already encodeed and ready to be decodeed.
+classifier1[1]  ->      EtherRewrite(04:70:00:00:00:11, 04:70:00:00:03:11)      ->      chip1   ->      decode;
+classifier2[1]  ->      EtherRewrite(04:70:00:00:00:21, 04:70:00:00:03:21)      ->      chip1   ->      decode;
+classifier3[1]  ->      EtherRewrite(04:70:00:00:00:31, 04:70:00:00:03:31)      ->      chip1   ->      decode;
+
+
+classifier0[2]  ->      Discard;
+classifier1[2]  ->      Discard;
+classifier2[2]  ->      Discard;
+classifier3[2]  ->      Discard;
+
+// swapped dst and src mack because once the packet is prepped, we want it to have
+// our neighbors mac address as the dstination.
+decode ->      EtherRewrite(04:70:00:00:01:01, 04:70:00:00:02:01)->      data_out;

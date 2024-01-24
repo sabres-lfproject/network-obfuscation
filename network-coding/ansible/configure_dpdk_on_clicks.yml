@@ -1,0 +1,43 @@
+- hosts: clicks
+  tasks:
+    - name: install packages
+      apt:
+        pkg:
+          - wget
+        update_cache: yes
+      become: yes
+
+    - name: get dpdk-devbind.py
+      shell: wget https://raw.githubusercontent.com/ceph/dpdk/master/tools/dpdk-devbind.py
+
+    - name: copy over dpdk unbind script
+      copy:
+        src: ../scripts/unbind.sh
+        dest: /home/rvn/unbind.sh
+        mode: 0777
+
+    - name: unbind all interfaces back to e1000
+      shell:
+        cmd: /home/rvn/unbind.sh
+      become: yes
+
+    - name: copy over template script
+      copy:
+        src: ../scripts/convert_to_dpdk_format.py
+        dest: /home/rvn/convert-to-dpdk-template.py
+        mode: 0777
+
+    - name: create dpdk templates
+      shell:
+        cmd: python3 /home/rvn/convert-to-dpdk-template.py
+
+    - name: copy over dpdk bind script
+      copy:
+        src: ../scripts/bind.sh
+        dest: /home/rvn/bind.sh
+        mode: 0777
+
+    - name: bind all interfaces to dpdk
+      shell:
+        cmd: /home/rvn/bind.sh
+      become: yes

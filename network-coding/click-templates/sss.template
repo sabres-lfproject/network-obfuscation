@@ -1,0 +1,87 @@
+// address info for each of the interfaces
+classifier0     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        -,
+        );
+
+classifier1     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        -,
+        );
+
+classifier2     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        -,
+        );
+
+classifier3     :: Classifier(
+        12/0806 20/0001, /* arp requests */
+        -,
+        );
+
+ipclassifier    :: IPClassifier(
+        dst host DSTIP
+        );
+
+data_in                 ::      FromDevice(ETH1);
+left_in_device          ::      FromDevice(ETH2);
+center_in_device        ::      FromDevice(ETH3);
+right_in_device         ::      FromDevice(ETH4);
+
+data_out                ::      ToDevice(ETH1);
+left_out_device         ::      ToDevice(ETH2);
+center_out_device       ::      ToDevice(ETH3);
+right_out_device        ::      ToDevice(ETH4);
+
+q1      :: ThreadSafeQueue(200);
+q2      :: ThreadSafeQueue(200);
+q3      :: ThreadSafeQueue(200);
+q4      :: ThreadSafeQueue(200);
+
+chip    :: MarkIPHeader(14);
+chip1   :: MarkIPHeader(14);
+chip2   :: MarkIPHeader(14);
+chip3   :: MarkIPHeader(14);
+chip4   :: MarkIPHeader(14);
+
+encrypt :: SSSMsg(3,2,0);
+decrypt :: SSSMsg(3,2,1);
+
+
+/* handle the arp requests */
+
+data_in         ->      classifier0[0]  ->      Print("a")      ->      ARPResponder(DSTIP DSTROUTE THISMAC1)        ->      q1;
+
+// no-ops
+left_in_device  ->      classifier1[0]  ->      Print("b")      ->  q2;
+center_in_device ->     classifier2[0]  ->      Print("c")      ->      q3;
+right_in_device ->      classifier3[0]  ->      Print("d")      ->      q4;
+
+
+
+
+// if this is an ip packet
+// and it is dest host y -> rewrite the eth header now
+// then send it to SSS, 3 shares, 2 threshold, and set option to encrypt
+classifier0[1]  ->       chip    ->      ipclassifier[0] ->      encrypt;
+
+// then these will be the encoded chunks
+encrypt[0]      ->       Print("x")      ->     EtherRewrite(THISMAC2, NEIGHMAC2)      ->   IPEncap(PROTO 14, SRC SRCIP, DST DSTIP) ->      q2;
+encrypt[1]      ->       Print("y")      ->     EtherRewrite(THISMAC3, NEIGHMAC3)      ->   IPEncap(PROTO 14, SRC SRCIP, DST DSTIP) ->      q3;
+encrypt[2]      ->       Print("z")      ->     EtherRewrite(THISMAC4, NEIGHMAC4)      ->   IPEncap(PROTO 14, SRC SRCIP, DST DSTIP) ->      q4;
+
+
+// if the packet is coming over one of or other links, it means its already encrypted and ready to be decrypted.
+classifier1[1]  ->      EtherRewrite(THISMAC2, NEIGHMAC2)      ->      chip1   ->      decrypt;
+classifier2[1]  ->      EtherRewrite(THISMAC3, NEIGHMAC3)      ->      chip2   ->      decrypt;
+classifier3[1]  ->      EtherRewrite(THISMAC4, NEIGHMAC4)      ->      chip3   ->      decrypt;
+
+
+decrypt ->      chip4   ->      IPPrint("after")        ->      EtherRewrite(DSTMAC, SRCMAC)->    IPEncap(PROTO 14, DST DSTIP, SRC SRCIP) ->     q1;
+
+// now send out everything from our queues
+q1      ->      data_out;
+q2      ->      left_out_device;
+q3      ->      center_out_device;
+q4      ->      right_out_device;
+

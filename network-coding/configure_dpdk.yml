@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i .rvn/ansible-hosts -i ansible/hosts.ini -e 'ansible_python_interpreter=/usr/bin/python3' --extra-vars "@ansible/vars.yml" ansible/configure_dpdk_on_clicks.yml

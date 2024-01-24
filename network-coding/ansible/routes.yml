@@ -1,0 +1,31 @@
+- hosts: [ends]
+  tasks:
+    - name: addresses
+      shell: ip -br addr | grep eth | grep -v eth0 | cut -d ' ' -f 1
+      register: num_eths
+
+    - debug: var=num_eths
+
+    - set_fact:
+        ifaces: "{{ num_eths.stdout_lines }}"
+
+    - name: addr interface
+      command: ip route add {{ item.addr }} dev {{ item.dev }}
+      with_items:
+        - "{{ vars['config'][inventory_hostname].routes }}"
+      become: yes
+      when: inventory_hostname in vars['config']
+
+- hosts: [forwards]
+  tasks:
+    - name: enable ipv4 forwarding
+      shell: sysctl -w net.ipv4.ip_forward=1
+      become: yes
+
+    - name: add routes to the ends because we are doing linux forwarding
+      command: ip route add {{ item.addr }} dev {{ item.dev }}
+      with_items:
+        - "{{ vars['config'][inventory_hostname].routes }}"
+      become: yes
+      when: inventory_hostname in vars['config']
+

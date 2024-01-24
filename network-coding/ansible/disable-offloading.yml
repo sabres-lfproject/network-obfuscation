@@ -1,0 +1,8 @@
+- hosts: [all]
+  tasks:
+    - name: disable offloading 
+      command: ethtool -K {{ item.name }} tso off ufo off gso off gro off lro off
+      with_items:
+        - "{{ vars['config'][inventory_hostname].interfaces }}"
+      become: yes
+      when: inventory_hostname in vars['config']
